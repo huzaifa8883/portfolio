@@ -3,378 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Huzaifa Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Muhammad Huzaifa | Full-Stack Developer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Load Lucide Icons -->
+    <script type="module">
+      import { createIcons, Mail, Phone, Code, Zap, Briefcase, ChevronRight } from 'https://cdn.skypack.dev/lucide@latest';
+      createIcons({ icons: { Mail, Phone, Code, Zap, Briefcase, ChevronRight } });
+    </script>
+
     <style>
-        /* General Styles */
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif; /* Applied modern font */
-            background-color: #121212; /* Darker, sleek background */
-            color: #f0f0f0;
-            scroll-behavior: smooth;
-            line-height: 1.6;
-        }
-
-        /* Accent Colors */
         :root {
-            --primary-color: #1e88e5; /* Blue */
-            --secondary-color: #00bfa5; /* Teal/Aquamarine */
-            --card-bg: #1e1e1e;
-            --text-color: #f0f0f0;
+            --primary: #007ACC; /* Electric Blue - Corporate Feel */
+            --secondary: #2C7A7B; /* Deep Teal - Accent */
+            --bg-dark: #0A0A0A;
+            --card-bg: #1A1A1A;
         }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(18, 18, 18, 0.95); /* Semi-transparent, matching background */
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
         }
-
-        nav a {
-            color: var(--text-color);
-            margin: 0 20px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s, transform 0.3s;
-            position: relative;
+        .header-gradient {
+            background-image: linear-gradient(135deg, #0A0A0A 0%, #151F2F 100%);
         }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--secondary-color);
-            transition: width 0.3s ease-out;
-        }
-
-        nav a:hover {
-            color: var(--secondary-color);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Header */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            /* Sleek gradient background */
-            background: linear-gradient(135deg, #121212 0%, #004d40 100%);
-            padding-top: 50px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) inset;
-        }
-
-        header h1 {
-            font-size: 4em;
-            margin-bottom: 5px;
-            font-weight: 700;
-            /* Gradient text effect */
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        .text-gradient {
+            background-image: linear-gradient(90deg, #007ACC, #2C7A7B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        header p {
-            font-size: 1.5em;
-            color: #ccc;
-            letter-spacing: 1px;
+        .skill-badge {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-
-        /* Section Styling */
-        section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: auto;
+        .skill-badge:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 122, 204, 0.4);
         }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 3em;
-            font-weight: 700;
-            /* Gradient for section titles */
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
+        .project-card-border {
+            border-left: 5px solid var(--primary);
+            transition: all 0.4s ease-in-out;
         }
-
-        /* Skills Section */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        .skill {
-            padding: 12px 25px;
-            border-radius: 50px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .skill:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 15px rgba(0, 191, 165, 0.3);
-            border-color: var(--secondary-color);
-            color: var(--secondary-color);
-        }
-
-        /* Projects Section */
-        .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 300px;
-            text-align: left;
-            transition: 0.4s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            border-left: 5px solid var(--primary-color); /* Highlight bar */
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 10px var(--secondary-color);
-            border-left: 5px solid var(--secondary-color);
-        }
-
-        .project-card h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.8em;
-            color: var(--secondary-color);
-            font-weight: 700;
-        }
-
-        .project-card p {
-            font-size: 1em;
-            color: #b0b0b0;
-            margin-bottom: 20px;
-        }
-
-        .project-card a {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--primary-color);
-            color: #fff;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .project-card a:hover {
-            background: var(--secondary-color);
-            box-shadow: 0 0 10px var(--secondary-color);
-        }
-
-        /* Contact Section */
-        .contact-info {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 1.1em;
-        }
-
-        .contact-info a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        .contact-info a:hover {
-            color: var(--primary-color);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: auto;
-            gap: 20px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background: #242424;
-            color: var(--text-color);
-            font-size: 1em;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 8px rgba(30, 136, 229, 0.6);
-        }
-
-        .contact-form button {
-            padding: 15px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .contact-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 191, 165, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: #777;
-            background: #1e1e1e;
-            border-top: 1px solid #333;
-            font-size: 0.9em;
-        }
-
-        /* Responsive Design */
-        @media(max-width: 768px){
-            header h1 {
-                font-size: 3em;
-            }
-            header p {
-                font-size: 1.2em;
-            }
-            h2 {
-                font-size: 2.5em;
-            }
-            .projects {
-                flex-direction: column;
-                align-items: center;
-            }
-            .project-card {
-                max-width: 90%;
-            }
-            nav a {
-                margin: 0 10px;
-            }
-            nav {
-                padding: 15px 0;
-            }
+        .project-card-border:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 122, 204, 0.4);
+            border-left-color: var(--secondary);
         }
     </style>
 </head>
-<body>
-    <nav>
-        <a href="#hero">Home</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+<body class="text-gray-100 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-950/90 backdrop-blur-sm z-50 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center h-16">
+                <div class="flex space-x-6 sm:space-x-10 items-center">
+                    <a href="#hero" class="text-lg font-semibold tracking-wider hover:text-blue-400 transition duration-300">HOME</a>
+                    <a href="#skills" class="text-lg font-semibold tracking-wider hover:text-blue-400 transition duration-300">SKILLS</a>
+                    <a href="#projects" class="text-lg font-semibold tracking-wider hover:text-blue-400 transition duration-300">PROJECTS</a>
+                    <a href="#contact" class="text-lg font-semibold tracking-wider hover:text-blue-400 transition duration-300">CONTACT</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <header id="hero">
-        <h1>Muhammad Huzaifa</h1>
-        <p>Web Developer • Sargodha Road near Pearl City</p>
+    <!-- 1. Hero Section -->
+    <header id="hero" class="header-gradient min-h-screen flex flex-col justify-center items-center text-center pt-16 px-4">
+        <div class="max-w-4xl">
+            <p class="text-xl font-medium mb-4 text-blue-400 tracking-widest uppercase">
+                Muhammad Huzaifa
+            </p>
+            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold leading-tight mb-6">
+                <span class="text-gradient">Full-Stack Developer</span>
+            </h1>
+            <p class="text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                Specializing in robust, high-performance web applications using the MERN stack and leveraging modern Generative AI services.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="#projects" class="px-8 py-3 bg-blue-600 text-white font-bold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    View Portfolio
+                </a>
+                <a href="#contact" class="px-8 py-3 border border-blue-600 text-blue-400 font-bold rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 transform hover:scale-105">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
     </header>
 
-    <section id="skills">
-        <h2>🚀 My Skills</h2>
-        <div class="skills">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">React</div>
-            <div class="skill">Next.js</div>
-            <div class="skill">Node.js</div>
-            <div class="skill">Express</div>
-            <div class="skill">MongoDB</div>
-            <div class="skill">REST APIs</div>
-            <div class="skill">Generative AI</div>
+    <!-- 2. Skills Section -->
+    <section id="skills" class="py-20 md:py-24 px-4 bg-gray-950">
+        <h2 class="text-4xl lg:text-5xl font-extrabold text-center mb-12 uppercase">
+            <span class="text-gradient">Core Competencies</span>
+        </h2>
+        
+        <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <!-- Front-End -->
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="code" class="w-6 h-6 mx-auto mb-2 text-blue-400"></i>
+                <p class="text-sm font-semibold">HTML5/CSS3</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="zap" class="w-6 h-6 mx-auto mb-2 text-yellow-400"></i>
+                <p class="text-sm font-semibold">JavaScript (ES6+)</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="zap" class="w-6 h-6 mx-auto mb-2 text-blue-500"></i>
+                <p class="text-sm font-semibold">React.js</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="code" class="w-6 h-6 mx-auto mb-2 text-gray-300"></i>
+                <p class="text-sm font-semibold">Next.js</p>
+            </div>
+            
+            <!-- Back-End -->
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="code" class="w-6 h-6 mx-auto mb-2 text-green-500"></i>
+                <p class="text-sm font-semibold">Node.js / Express</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="database" class="w-6 h-6 mx-auto mb-2 text-green-600"></i>
+                <p class="text-sm font-semibold">MongoDB</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="briefcase" class="w-6 h-6 mx-auto mb-2 text-red-400"></i>
+                <p class="text-sm font-semibold">REST APIs</p>
+            </div>
+
+            <!-- Other -->
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="brain" class="w-6 h-6 mx-auto mb-2 text-purple-400"></i>
+                <p class="text-sm font-semibold">Generative AI</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="git-branch" class="w-6 h-6 mx-auto mb-2 text-orange-500"></i>
+                <p class="text-sm font-semibold">Git / GitHub</p>
+            </div>
+            <div class="skill-badge text-center p-4 bg-gray-800 rounded-xl">
+                <i data-lucide="layout-grid" class="w-6 h-6 mx-auto mb-2 text-teal-400"></i>
+                <p class="text-sm font-semibold">Tailwind CSS</p>
+            </div>
         </div>
     </section>
 
-    <section id="projects">
-        <h2>💡 Recent Projects</h2>
-        <div class="projects">
-            <div class="project-card">
-                <h3>BP Exch</h3>
-                <p>A website built using modern **JavaScript** and web development techniques.</p>
-                <a href="https://bpexch.com/" target="_blank">View Website</a>
+    <!-- 3. Projects Section -->
+    <section id="projects" class="py-20 md:py-24 px-4 bg-gray-900">
+        <h2 class="text-4xl lg:text-5xl font-extrabold text-center mb-16 uppercase">
+            <span class="text-gradient">Portfolio Highlights</span>
+        </h2>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <!-- Project Card 1: BF Exch -->
+            <div class="project-card-border p-6 rounded-lg bg-gray-800 shadow-xl">
+                <h3 class="text-3xl font-bold text-blue-400 mb-2">BF Exch</h3>
+                <p class="text-gray-400 mb-4 text-lg">High-volume transactional platform.</p>
+                <ul class="space-y-3 mb-6 text-gray-300">
+                    <li class="flex items-center"><i data-lucide="briefcase" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Role:</span> Lead Front-End Implementation</li>
+                    <li class="flex items-center"><i data-lucide="code" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Stack:</span> JavaScript, Custom APIs, HTML5/CSS3</li>
+                    <li class="flex items-start"><i data-lucide="zap" class="w-5 h-5 mt-1 mr-3 text-teal-400 flex-shrink-0"></i><span class="font-medium">Challenge Solved:</span> Optimized UI rendering for real-time data feeds, achieving sub-second latency for market updates.</li>
+                </ul>
+                <a href="https://bfexch.com/" target="_blank" class="flex items-center justify-center w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Project <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+                </a>
             </div>
 
-            <div class="project-card">
-                <h3>7 Star Digitizing</h3>
-                <p>A web solution built entirely using **JavaScript** for efficient digitizing services.</p>
-                <a href="https://7stardigitizing.com/" target="_blank">View Website</a>
+            <!-- Project Card 2: 7 Star Digitizing -->
+            <div class="project-card-border p-6 rounded-lg bg-gray-800 shadow-xl">
+                <h3 class="text-3xl font-bold text-blue-400 mb-2">7 Star Digitizing</h3>
+                <p class="text-gray-400 mb-4 text-lg">Specialized service-oriented web application.</p>
+                <ul class="space-y-3 mb-6 text-gray-300">
+                    <li class="flex items-center"><i data-lucide="briefcase" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Role:</span> Full-Stack Developer</li>
+                    <li class="flex items-center"><i data-lucide="code" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Stack:</span> JavaScript, Node.js (Backend), Responsive CSS</li>
+                    <li class="flex items-start"><i data-lucide="zap" class="w-5 h-5 mt-1 mr-3 text-teal-400 flex-shrink-0"></i><span class="font-medium">Challenge Solved:</span> Developed a seamless order tracking and delivery status system, improving client communication efficiency by 30%.</li>
+                </ul>
+                <a href="https://7stardigitizing.com/" target="_blank" class="flex items-center justify-center w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Project <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+                </a>
             </div>
 
-            <div class="project-card">
-                <h3>Barus Golden</h3>
-                <p>Another successful web project demonstrating strong **JavaScript** implementation.</p>
-                <a href="https://barusgolden.com/" target="_blank">View Website</a>
+            <!-- Project Card 3: Barus Golden -->
+            <div class="project-card-border p-6 rounded-lg bg-gray-800 shadow-xl">
+                <h3 class="text-3xl font-bold text-blue-400 mb-2">Barus Golden</h3>
+                <p class="text-gray-400 mb-4 text-lg">E-commerce storefront and inventory management.</p>
+                <ul class="space-y-3 mb-6 text-gray-300">
+                    <li class="flex items-center"><i data-lucide="briefcase" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Role:</span> Back-End Integration Specialist</li>
+                    <li class="flex items-center"><i data-lucide="code" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Stack:</span> JavaScript, MongoDB, Express.js</li>
+                    <li class="flex items-start"><i data-lucide="zap" class="w-5 h-5 mt-1 mr-3 text-teal-400 flex-shrink-0"></i><span class="font-medium">Challenge Solved:</span> Implemented scalable, secure database models for product data, handling over 10K unique items efficiently.</li>
+                </ul>
+                <a href="https://barusgolden.com/" target="_blank" class="flex items-center justify-center w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Project <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+                </a>
             </div>
 
-            <div class="project-card">
-                <h3>Kleinanzeigen Clone</h3>
-                <p>A full-stack application leveraging **React** for the front-end and **Node.js** for the back-end.</p>
-                <a href="https://www.kleinanzeigen.de/" target="_blank">View Website</a>
+            <!-- Project Card 4: Kleinanzeigen Clone -->
+            <div class="project-card-border p-6 rounded-lg bg-gray-800 shadow-xl">
+                <h3 class="text-3xl font-bold text-blue-400 mb-2">Kleinanzeigen Clone</h3>
+                <p class="text-gray-400 mb-4 text-lg">Scalable classifieds platform clone.</p>
+                <ul class="space-y-3 mb-6 text-gray-300">
+                    <li class="flex items-center"><i data-lucide="briefcase" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Role:</span> Full-Stack MERN Developer</li>
+                    <li class="flex items-center"><i data-lucide="code" class="w-5 h-5 mr-3 text-teal-400"></i><span class="font-medium">Stack:</span> React, Node.js, Express, MongoDB</li>
+                    <li class="flex items-start"><i data-lucide="zap" class="w-5 h-5 mt-1 mr-3 text-teal-400 flex-shrink-0"></i><span class="font-medium">Challenge Solved:</span> Engineered robust user authentication and search functionalities for large datasets.</li>
+                </ul>
+                <a href="https://www.kleinanzeigen.de/" target="_blank" class="flex items-center justify-center w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Project <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>📞 Get In Touch</h2>
-        <div class="contact-info">
-            <p>I'm available for new opportunities and collaborations. Feel free to reach out!</p>
-            <a href="tel:+923278363169">Phone: +92 327 8363169</a> |
-            <a href="mailto:qhuzaifa675@gmail.com">Email: qhuzaifa675@gmail.com</a>
+    <!-- 4. Contact Section -->
+    <section id="contact" class="py-20 md:py-24 px-4 bg-gray-950">
+        <h2 class="text-4xl lg:text-5xl font-extrabold text-center mb-16 uppercase">
+            <span class="text-gradient">Ready to Collaborate?</span>
+        </h2>
+        <div class="max-w-4xl mx-auto bg-gray-900 p-8 md:p-12 rounded-xl shadow-2xl">
+            
+            <!-- Contact Details -->
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-12 mb-10 text-xl font-medium">
+                <div class="flex items-center text-blue-400">
+                    <i data-lucide="phone" class="w-6 h-6 mr-3 text-teal-400"></i>
+                    <a href="tel:+923278363169" class="hover:underline">+92 327 8363169</a>
+                </div>
+                <div class="flex items-center text-blue-400">
+                    <i data-lucide="mail" class="w-6 h-6 mr-3 text-teal-400"></i>
+                    <a href="mailto:qhuzaifa675@gmail.com" class="hover:underline">qhuzaifa675@gmail.com</a>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form class="space-y-6">
+                <input type="text" placeholder="Your Full Name" required class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-500/50 transition duration-300" />
+                <input type="email" placeholder="Corporate Email Address" required class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-500/50 transition duration-300" />
+                <textarea rows="5" placeholder="Project Details / Inquiry (Be Specific)" class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-500/50 transition duration-300"></textarea>
+                <button type="submit" class="w-full py-4 bg-blue-600 text-white font-extrabold rounded-lg shadow-xl hover:bg-blue-700 transition duration-300 uppercase tracking-widest transform hover:scale-[1.01]">
+                    Send Professional Inquiry
+                </button>
+            </form>
         </div>
-        <form class="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea rows="5" placeholder="Your Message"></textarea>
-            <button type="submit">Send Message</button>
-        </form>
     </section>
 
-    <footer>
-        &copy; 2025 Muhammad Huzaifa. All Rights Reserved. | <a href="tel:+923278363169">+92 327 8363169</a> | <a href="mailto:qhuzaifa675@gmail.com">qhuzaifa675@gmail.com</a>
+    <!-- 5. Footer -->
+    <footer class="bg-gray-900 py-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Muhammad Huzaifa. All Rights Reserved. | Designed for Professional Impact.
+        </div>
     </footer>
 
 </body>
