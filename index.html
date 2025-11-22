@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Huzaifa Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif; /* Applied modern font */
+            background-color: #121212; /* Darker, sleek background */
+            color: #f0f0f0;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* Accent Colors */
+        :root {
+            --primary-color: #1e88e5; /* Blue */
+            --secondary-color: #00bfa5; /* Teal/Aquamarine */
+            --card-bg: #1e1e1e;
+            --text-color: #f0f0f0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.95); /* Semi-transparent, matching background */
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        nav a {
+            color: var(--text-color);
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease-out;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Header */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Sleek gradient background */
+            background: linear-gradient(135deg, #121212 0%, #004d40 100%);
+            padding-top: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) inset;
+        }
+
+        header h1 {
+            font-size: 4em;
+            margin-bottom: 5px;
+            font-weight: 700;
+            /* Gradient text effect */
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.5em;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 3em;
+            font-weight: 700;
+            /* Gradient for section titles */
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        /* Skills Section */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .skill {
+            padding: 12px 25px;
+            border-radius: 50px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .skill:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 191, 165, 0.3);
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        /* Projects Section */
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 300px;
+            text-align: left;
+            transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-left: 5px solid var(--primary-color); /* Highlight bar */
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 10px var(--secondary-color);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .project-card p {
+            font-size: 1em;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .project-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-card a:hover {
+            background: var(--secondary-color);
+            box-shadow: 0 0 10px var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+            gap: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #242424;
+            color: var(--text-color);
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(30, 136, 229, 0.6);
+        }
+
+        .contact-form button {
+            padding: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 191, 165, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #777;
+            background: #1e1e1e;
+            border-top: 1px solid #333;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 768px){
+            header h1 {
+                font-size: 3em;
+            }
+            header p {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 2.5em;
+            }
+            .projects {
+                flex-direction: column;
+                align-items: center;
+            }
+            .project-card {
+                max-width: 90%;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+            nav {
+                padding: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <header id="hero">
+        <h1>Muhammad Huzaifa</h1>
+        <p>Web Developer • Sargodha Road near Pearl City</p>
+    </header>
+
+    <section id="skills">
+        <h2>🚀 My Skills</h2>
+        <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">React</div>
+            <div class="skill">Next.js</div>
+            <div class="skill">Node.js</div>
+            <div class="skill">Express</div>
+            <div class="skill">MongoDB</div>
+            <div class="skill">REST APIs</div>
+            <div class="skill">Generative AI</div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>💡 Recent Projects</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>BP Exch</h3>
+                <p>A website built using modern **JavaScript** and web development techniques.</p>
+                <a href="https://bpexch.com/" target="_blank">View Website</a>
+            </div>
+
+            <div class="project-card">
+                <h3>7 Star Digitizing</h3>
+                <p>A web solution built entirely using **JavaScript** for efficient digitizing services.</p>
+                <a href="https://7stardigitizing.com/" target="_blank">View Website</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Barus Golden</h3>
+                <p>Another successful web project demonstrating strong **JavaScript** implementation.</p>
+                <a href="https://barusgolden.com/" target="_blank">View Website</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Kleinanzeigen Clone</h3>
+                <p>A full-stack application leveraging **React** for the front-end and **Node.js** for the back-end.</p>
+                <a href="https://www.kleinanzeigen.de/" target="_blank">View Website</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>📞 Get In Touch</h2>
+        <div class="contact-info">
+            <p>I'm available for new opportunities and collaborations. Feel free to reach out!</p>
+            <a href="tel:+923278363169">Phone: +92 327 8363169</a> |
+            <a href="mailto:qhuzaifa675@gmail.com">Email: qhuzaifa675@gmail.com</a>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2025 Muhammad Huzaifa. All Rights Reserved. | <a href="tel:+923278363169">+92 327 8363169</a> | <a href="mailto:qhuzaifa675@gmail.com">qhuzaifa675@gmail.com</a>
+    </footer>
+
+</body>
+</html>
